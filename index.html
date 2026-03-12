@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Participantes do Treinamento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0f;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+  }
+
+  .poster {
+    width: 100%;
+    max-width: 900px;
+    background: linear-gradient(135deg, #0d0d1a 0%, #111128 50%, #0a0a1f 100%);
+    border: 1px solid rgba(255,200,60,0.15);
+    border-radius: 20px;
+    padding: 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 600px) {
+    .poster { padding: 60px 56px; border-radius: 24px; }
+    body { padding: 40px 20px; }
+  }
+
+  /* decorative blobs */
+  .poster::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,180,0,0.06) 0%, transparent 70%);
+    top: -150px; right: -100px;
+    border-radius: 50%;
+  }
+  .poster::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(80,60,255,0.07) 0%, transparent 70%);
+    bottom: -100px; left: -80px;
+    border-radius: 50%;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,180,0,0.1);
+    border: 1px solid rgba(255,180,0,0.3);
+    color: #ffc43d;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .tag span { width: 6px; height: 6px; background: #ffc43d; border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.4; transform:scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  @media (min-width: 600px) {
+    h1 { font-size: 52px; }
+  }
+
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #ffc43d, #ff8c42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    color: rgba(255,255,255,0.45);
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 48px;
+    letter-spacing: 0.5px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,180,0,0.3), transparent);
+    margin-bottom: 40px;
+  }
+
+  /* group sections */
+  .group {
+    margin-bottom: 36px;
+  }
+
+  .group-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ffc43d;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,180,0,0.15);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  @media (min-width: 480px) {
+    .cards { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  }
+
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 18px 20px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, #ffc43d, #ff8c42);
+    border-radius: 3px 0 0 3px;
+    opacity: 0.6;
+  }
+
+  .card:hover {
+    background: rgba(255,180,0,0.05);
+    border-color: rgba(255,180,0,0.2);
+    transform: translateY(-2px);
+  }
+
+  .card-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+
+  .card-region {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+  }
+
+  /* stats bar */
+  .stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    justify-content: center;
+  }
+
+  @media (min-width: 600px) {
+    .stats { gap: 32px; margin-top: 48px; padding-top: 32px; justify-content: flex-start; }
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffc43d;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .footer {
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.15);
+    text-align: right;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="tag"><span></span>Confirmados</div>
+
+  <h1>Participantes do<br><em>Treinamento</em></h1>
+  <p class="subtitle">Lista oficial de participantes do programa</p>
+
+  <div class="divider"></div>
+
+  <!-- Gerentes de Loja -->
+  <div class="group">
+    <div class="group-title">Gerente de Loja</div>
+    <div class="cards">
+      <div class="card"><div class="card-name">Leide Simone Moreira dos Santos</div><div class="card-region">Mundo Novo (MS-1)</div></div>
+      <div class="card"><div class="card-name">Bruna Cibele Oliveira Lemos</div><div class="card-region">Aquidauana (MS-2)</div></div>
+      <div class="card"><div class="card-name">Erica de Abreu Matias</div><div class="card-region">CDAM (Norte 1)</div></div>
+      <div class="card"><div class="card-name">Fernanda Barros da Rocha</div><div class="card-region">Mal. Cândido Rondon (Oeste)</div></div>
+      <div class="card"><div class="card-name">Andressa de Siqueira</div><div class="card-region">Palotina (Oeste)</div></div>
+      <div class="card"><div class="card-name">Antonila Beier Dias</div><div class="card-region">São Bento do Sul (SC-1/Ctba)</div></div>
+      <div class="card"><div class="card-name">Eugenio dos Santos Burgos Neto</div><div class="card-region">Santa Maria do Oeste (Sul)</div></div>
+      <div class="card"><div class="card-name">Joao Artur Lopes Sarachu</div><div class="card-region">CDAM</div></div>
+    </div>
+  </div>
+
+  <!-- Coordenador Operacional -->
+  <div class="group">
+    <div class="group-title">Coordenador Operacional</div>
+    <div class="cards">
+      <div class="card"><div class="card-name">Joao Vitor Maia da Rosa</div><div class="card-region">Tozetto II (CG)</div></div>
+      <div class="card"><div class="card-name">Samara Cristina Batista</div><div class="card-region">Joinville XV (SC-1/Ctba)</div></div>
+      <div class="card"><div class="card-name">Patricia Bernardino dos Reis</div><div class="card-region">Balneário Camboriú (SC-2)</div></div>
+    </div>
+  </div>
+
+  <!-- Coordenador Adm -->
+  <div class="group">
+    <div class="group-title">Coordenador Adm.</div>
+    <div class="cards">
+      <div class="card"><div class="card-name">Lucimeire Aparecida dos Santos</div><div class="card-region">Campo Largo (Ctba 1)</div></div>
+    </div>
+  </div>
+
+  <!-- Vendedor -->
+  <div class="group">
+    <div class="group-title">Vendedor(a)</div>
+    <div class="cards">
+      <div class="card"><div class="card-name">Rafael Gomes Ferreira</div><div class="card-region">Nioaque (MS 2)</div></div>
+    </div>
+  </div>
+
+  <!-- Assistente de Loja -->
+  <div class="group">
+    <div class="group-title">Assistente de Loja</div>
+    <div class="cards">
+      <div class="card"><div class="card-name">Maria Fernanda Guilherme Siviero</div><div class="card-region">Nioaque (MS 2)</div></div>
+      <div class="card"><div class="card-name">Mailson Pires de Souza</div><div class="card-region">Nioaque (MS 2)</div></div>
+      <div class="card"><div class="card-name">Barbara da Costa Alem Nogueira</div><div class="card-region">Nioaque (MS 2)</div></div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-number">16</div>
+      <div class="stat-label">Participantes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Cargos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">13</div>
+      <div class="stat-label">Filiais</div>
+    </div>
+  </div>
+
+  <div class="footer">Treinamento Corporativo · 2025</div>
+</div>
+</body>
+</html>
